@@ -5,6 +5,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet(urlPatterns = "/serv")
@@ -12,16 +13,24 @@ public class Serv extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
-        super.init();
     }
 
     @Override
     public void doGet(HttpServletRequest req,
                       HttpServletResponse resp) throws IOException {
-        String str1 = req.getParameter("name1");
-        String str2 = req.getParameter("name2");
+        // TODO auth
+        HttpSession session = req.getSession();
+        session.setAttribute("mail", "mail@my.com");
 
-        resp.getWriter().print("<h1>name1 =" + str1 + "</h1><br>");
-        resp.getWriter().print("<h1>name2 =" + str2 + "</h1><br>");
+        String name1 = req.getParameter("name1");
+        String name2 = req.getParameter("name2");
+
+        resp.getWriter().println("<html> <h1>name1 = " + name1
+                + ", name2 = " + name2 + "</h1></html>");
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        doGet(req, resp);
     }
 }
