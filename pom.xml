@@ -12,6 +12,7 @@
     <modules>
         <module>proff_examples_web</module>
         <module>alex_gorlov_web1</module>
+        <module>alex_yelisieiev_web</module>
     </modules>
 
     <properties>
