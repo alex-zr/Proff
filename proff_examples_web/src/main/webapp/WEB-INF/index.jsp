@@ -1,3 +1,5 @@
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="java.util.Date" %>
 <%@ page import="java.time.LocalDate" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -20,6 +22,16 @@
     method();
 %>
 <%= 4 + 4 %>
+    <c:out value="${2}"></c:out>
+    <ol>
+        <c:forEach items="${models}" var="model">
+            <li>${model}</li>
+        </c:forEach>
+    </ol>
+
+
+
+
     <form action="/serv" method="post">
         <input type="text" name="name1" value="Stepan"> <br/>
         <input type="password" name="name2" value="Kurgan"> <br/>
