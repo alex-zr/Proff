@@ -13,6 +13,8 @@
         <module>proff_examples_web</module>
         <module>alex_gorlov_web1</module>
         <module>Serhii_Tarasenko</module>
+        <module>alex_yelisieiev_web</module>
+        <module>vlad_gural_web1</module>
     </modules>
 
     <properties>
