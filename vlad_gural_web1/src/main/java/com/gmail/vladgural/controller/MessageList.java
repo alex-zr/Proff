@@ -1,5 +1,6 @@
 package com.gmail.vladgural.controller;
 
+import com.gmail.vladgural.client.Message;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -24,8 +25,8 @@ public class MessageList {
         list.add(m);
     }
 
-    public synchronized String toJSON(int n) {
+    public synchronized String toJSON(int n, LogPass lp) {
         if (n >= list.size()) return null;
-        return gson.toJson(new JsonMessages(list, n));
+        return gson.toJson(new JsonMessages(list, n, lp));
     }
 }

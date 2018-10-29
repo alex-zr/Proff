@@ -21,7 +21,11 @@ public class UsersListServlet extends HttpServlet {
         Users users = new Users();
 
         for(LogPass lp: lpList.getList()){
-            users.addUser(lp.getLogin());
+            String str = null;
+            str = lp.getLogin();
+            str += " -> access is ";
+            str += lp.isAccess();
+            users.addUser(str);
         }
 
         resp.setContentType("application/json");

@@ -13,27 +13,22 @@ import java.nio.charset.StandardCharsets;
 public class GetListServlet extends HttpServlet {
 
     private MessageList msgList = MessageList.getInstance();
+    private LogPassList lpList = LogPassList.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        String fromStr = req.getParameter("from");
-        int from = 0;
-        try {
-            from = Integer.parseInt(fromStr);
+        String loginStr = req.getParameter("login");
+        LogPass lp = lpList.checkLogin(loginStr);
+        int from = lp.getNumberOfReadMessages();
             if (from < 0) {
                 from = 0;
             }
-        } catch (Exception ex) {
-            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            return;
-        }
-
         resp.setContentType("application/json");
 
-        String json = msgList.toJSON(from);
+        String json = msgList.toJSON(from, lp);
         if (json != null) {
             OutputStream os = resp.getOutputStream();
-            byte[] buf = json.getBytes(StandardCharsets.UTF_8);
+            byte[] buf = json.getBytes("UTF-8");
             os.write(buf);
 
             //PrintWriter pw = resp.getWriter();

@@ -1,5 +1,7 @@
 package com.gmail.vladgural.controller;
 
+import com.gmail.vladgural.client.Message;
+
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -13,17 +15,32 @@ import java.nio.charset.StandardCharsets;
 public class AddServlet extends HttpServlet {
 
     private MessageList msgList = MessageList.getInstance();
+    private LogPassList lpList = LogPassList.getInstance();
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        String to;
+
         byte[] buf = requestBodyToArray(req);
-        String bufStr = new String(buf, StandardCharsets.UTF_8);
+        String bufStr = new String(buf, "UTF-8");
 
         Message msg = Message.fromJSON(bufStr);
-        if (msg != null)
+        if(msg == null) {
+            return;
+        }
+
+        to = msg.getTo();
+        if(to == null) {
             msgList.add(msg);
-        else
-            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            return;
+        }
+
+        for(LogPass lp: lpList.getList()){
+            if(lp.getLogin().equals(to)) {
+                msgList.add(msg);
+                return;
+            }
+        }
     }
 
     private byte[] requestBodyToArray(HttpServletRequest req) throws IOException {

@@ -21,4 +21,12 @@ public class LogPassList {
     public List<LogPass> getList(){
         return list;
     }
+
+    public LogPass checkLogin(String login){
+        for(LogPass lp:list){
+            if(lp.getLogin().equals(login)&&lp.isAccess())
+                return lp;
+        }
+        return null;
+    }
 }

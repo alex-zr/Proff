@@ -4,11 +4,14 @@ public class LogPass {
     private String login;
     private String passWord;
     private boolean access;
+    private int numberOfReadMessages;
 
     public LogPass(String login, String passWord){
         this.login = login;
         this.passWord = passWord;
         this.access = false;
+        this.numberOfReadMessages = 0;
+
     }
 
     public String getLogin() {
@@ -33,5 +36,13 @@ public class LogPass {
 
     public void setAccess(boolean access) {
         this.access = access;
+    }
+
+    public int getNumberOfReadMessages() {
+        return numberOfReadMessages;
+    }
+
+    public void setNumberOfReadMessages(int numberOfReadMessages) {
+        this.numberOfReadMessages = numberOfReadMessages;
     }
 }

@@ -33,10 +33,10 @@ public class LogPassServlet  extends HttpServlet {
         OutputStream os = resp.getOutputStream();
 
         if(access)
-            strResponse = "access is allowed";
+            strResponse = "Access is allowed";
         else
             strResponse = "Access is denied";
-        byte buf[] = strResponse.getBytes();
+        byte buf[] = strResponse.getBytes("UTF-8");
         os.write(buf);
     }
 }
