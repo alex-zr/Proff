@@ -1,4 +1,4 @@
-package ua.com.prog.jdbc;
+package ua.kiev.prog.jdbc.statement;
 
 import static org.junit.Assert.assertTrue;
 

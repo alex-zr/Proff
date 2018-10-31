@@ -1,4 +1,4 @@
-package ua.com.prog.jdbc;
+package ua.kiev.prog.jdbc.statement;
 
 import java.sql.*;
 import java.util.Random;

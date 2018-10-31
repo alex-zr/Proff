@@ -1,4 +1,4 @@
-package ua.com.prog.tests;
+package ua.kiev.prog.jdbc.tests;
 
 import org.junit.After;
 import org.junit.Before;
