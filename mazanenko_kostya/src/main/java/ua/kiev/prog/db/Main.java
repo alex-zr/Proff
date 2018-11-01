@@ -1,18 +1,14 @@
-package ua.com.prog.jdbc;
+package ua.kiev.prog.db;
 
 import java.sql.*;
 import java.util.Random;
 import java.util.Scanner;
 
-/*
-    mysql -u USERNAME -p
-    show databases;
-    use DBNAME;
- */
 public class Main {
-    static final String DB_CONNECTION = "jdbc:mysql://localhost:3306/mydb";
+    static final String DB_CONNECTION = "jdbc:mysql://localhost:3306/rielt?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
     static final String DB_USER = "root";
-    static final String DB_PASSWORD = "password";
+    static final String DB_PASSWORD = "root";
+    private static int countRoom;
 
     static Connection conn;
 
@@ -25,11 +21,12 @@ public class Main {
                 //initDB();
 
                 while (true) {
-                    System.out.println("1: add client");
-                    System.out.println("2: add random clients");
-                    System.out.println("3: delete client");
-                    System.out.println("4: change client");
-                    System.out.println("5: view clients");
+                    System.out.println("1: define district");
+                    System.out.println("2: define address");
+                    System.out.println("3: define square");
+                    System.out.println("4: define room count");
+                    System.out.println("5: define price");
+                    System.out.println("6: show result");
                     System.out.print("-> ");
 
                     String s = sc.nextLine();
@@ -44,10 +41,13 @@ public class Main {
                             deleteClient(sc);
                             break;
                         case "4":
-                            changeClient(sc);
+                            defineRoomCount(sc);
                             break;
                         case "5":
-                            viewClients();
+                            //viewClients();
+                            break;
+                        case "6":
+                            viewAcc();
                             break;
                         default:
                             return;
@@ -103,21 +103,10 @@ public class Main {
         }
     }
 
-    private static void changeClient(Scanner sc) throws SQLException {
-        System.out.print("Enter client name: ");
-        String name = sc.nextLine();
-        System.out.print("Enter new age: ");
-        String sAge = sc.nextLine();
-        int age = Integer.parseInt(sAge);
-
-        PreparedStatement ps = conn.prepareStatement("UPDATE Clients SET age = ? WHERE name = ?");
-        try {
-            ps.setInt(1, age);
-            ps.setString(2, name);
-            ps.executeUpdate(); // for INSERT, UPDATE & DELETE
-        } finally {
-            ps.close();
-        }
+    private static void defineRoomCount(Scanner sc) throws SQLException {
+        System.out.print("Enter room count: ");
+        String sRoomCount = sc.nextLine();
+        countRoom = Integer.parseInt(sRoomCount);
     }
 
     private static void insertRandomClients(Scanner sc) throws SQLException {
@@ -148,10 +137,10 @@ public class Main {
         }
     }
 
-    private static void viewClients() throws SQLException {
-        PreparedStatement ps = conn.prepareStatement("SELECT * FROM Clients");
+    private static void viewAcc() throws SQLException {
+        PreparedStatement ps = conn.prepareStatement("SELECT * FROM accomodation WHERE room_count=?");
         try {
-            // table of data representing a database result set,
+            ps.setInt(1, countRoom);
             ResultSet rs = ps.executeQuery();
             try {
                 // can be used to get information about the types and properties of the columns in a ResultSet object
