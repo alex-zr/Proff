@@ -1,4 +1,4 @@
-package ua.com.prog.tests;
+package ua.kiev.prog.jdbc.tests;
 
 import java.io.IOException;
 import java.io.InputStream;

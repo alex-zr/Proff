@@ -1,4 +1,4 @@
-package ua.com.prog.callable;
+package ua.kiev.prog.jdbc.callable;
 
 import java.sql.*;
 
