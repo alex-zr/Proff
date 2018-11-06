@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-@Entity
+//@Entity
 @Table(name="Clients")
 @NamedQuery(name="Client.findAll", query = "SELECT c FROM Client c")
 public class Client {

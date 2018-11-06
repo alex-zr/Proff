@@ -2,7 +2,7 @@ package ua.kiev.prog.jpa.sample2;
 
 import javax.persistence.*;
 
-@Entity
+//@Entity
 @Table(name="Clients")
 public class Client {
     @Id

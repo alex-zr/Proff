@@ -3,16 +3,16 @@ package ua.kiev.prog.jpa.sample1;
 import javax.persistence.*;
 
 @Entity
-@Table(name="SimpleClients")
+@Table(name="clients")
 public class SimpleClient {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="id")
-    private long id;
+    private Long id;
 
     @Column(name="name", nullable = false)
     private String name;
-    private int age;
+    private Integer age;
 
     public SimpleClient() {}
 

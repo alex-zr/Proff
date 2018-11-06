@@ -103,7 +103,8 @@ public class App {
 
         SimpleClient c = null;
         try {
-            Query query = em.createQuery("SELECT c FROM SimpleClient c WHERE c.name = :name", SimpleClient.class);
+            Query query = em.createQuery("SELECT c FROM SimpleClient c " +
+                    "WHERE c.name = :name", SimpleClient.class);
             query.setParameter("name", name);
             c = (SimpleClient) query.getSingleResult();
         } catch (NoResultException ex) {
