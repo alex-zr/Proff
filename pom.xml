@@ -20,8 +20,9 @@
         <!--<module>Yevhenii_Tereshchenko</module>-->
         <module>ponomarov_Vladyslav</module>
         <module>MazanenkoKostya</module>
-        <module>proff_examples</module>
         <module>mazanenko_kostya</module>
+        <module>proff_examples</module>
+        <module>vlad_gural</module>
     </modules>
 
     <properties>
@@ -30,7 +31,7 @@
         <jdk.version>1.8</jdk.version>
         <log4j.version>1.2.17</log4j.version>
         <slf4j.version>1.7.2</slf4j.version>
-        <mysql.connector.version>6.0.4</mysql.connector.version>
+        <mysql.connector.version>5.1.46</mysql.connector.version>
         <platform.version>2.3.3</platform.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
