@@ -1,11 +1,13 @@
 package ua.kiev.prog.jpa.sample2;
 
+import ua.kiev.prog.jpa.sample1.SimpleClient;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-//@Entity
+@Entity
 @Table(name="Groups")
 public class Group {
     @Id
@@ -16,7 +18,7 @@ public class Group {
     private String name;
 
     @OneToMany(mappedBy = "group", cascade = CascadeType.ALL)
-    private List<Client> clients = new ArrayList<>();
+    private List<SimpleClient> clients = new ArrayList<>();
 
     public Group() {}
 
@@ -24,12 +26,12 @@ public class Group {
         this.name = name;
     }
 
-    public void addClient(Client client) {
+    public void addClient(SimpleClient client) {
         client.setGroup(this);
         clients.add(client);
     }
 
-    public List<Client> getClients() {
+    public List<SimpleClient> getClients() {
         return Collections.unmodifiableList(clients);
     }
 
