@@ -29,7 +29,8 @@ public class App {
             System.out.println();
 
             long id = 3;
-            changeClientName(id);
+            String name = "Gleb";
+            changeClientName(id, name);
             SimpleClient simpleClient = em.find(SimpleClient.class, id);
             System.out.println(simpleClient);
             System.out.println();
@@ -57,12 +58,12 @@ public class App {
             System.out.println(c);
     }
 
-    private static void changeClientName(long id) {
+    private static void changeClientName(long id, String name) {
         SimpleClient client = getClient(id);
         if (client != null) {
             em.getTransaction().begin();
             try {
-                client.setName("Vadim");
+                client.setName(name);
                 em.getTransaction().commit();
             } catch (Exception e) {
                 em.getTransaction().rollback();
@@ -71,7 +72,7 @@ public class App {
     }
 
     private static void removeClient(long id) {
-        SimpleClient client = em.find(SimpleClient.class, id);
+        SimpleClient client = getClient(id);
         if (client != null) {
             em.getTransaction().begin();
             try {
@@ -96,31 +97,21 @@ public class App {
     }
 
     private static SimpleClient getClient(long id) {
-        try {
-            Query query = em.createQuery("SELECT c FROM SimpleClient c where c.id=:id", SimpleClient.class);
-            query.setParameter("id", id);
-            return (SimpleClient) query.getSingleResult();
-        } catch (NoResultException e) {
+        SimpleClient client = em.find(SimpleClient.class, id);
+
+        if (client == null)
             System.out.println("Client with id=" + id + "not found");
-            return null;
-        } catch (NonUniqueResultException e) {
-            System.out.println("Non unique result");
-            return null;
-        }
+
+        return client;
     }
 
     private static Group getGroup(long id) {
-        try {
-            Query query = em.createQuery("SELECT c FROM Group c where c.id=:id", Group.class);
-            query.setParameter("id", id);
-            return (Group) query.getSingleResult();
-        } catch (NoResultException e) {
+        Group group = em.find(Group.class, id);
+
+        if (group == null)
             System.out.println("Group with id=" + id + " not found");
-            return null;
-        } catch (NonUniqueResultException e) {
-            System.out.println("Non unique result");
-            return null;
-        }
+
+        return group;
     }
 
 }
