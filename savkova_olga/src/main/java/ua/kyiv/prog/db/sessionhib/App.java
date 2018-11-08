@@ -26,11 +26,17 @@ public class App {
             em = emf.createEntityManager();
 
             showAllClients();
+            System.out.println();
 
             long id = 3L;
             changeClientName(id);
             SimpleClient simpleClient = em.find(SimpleClient.class, id);
             System.out.println(simpleClient);
+            System.out.println();
+
+            id = 4L;
+            removeClient(id);
+            System.out.println();
 
         } catch (HibernateException ex) {
             ex.printStackTrace();
@@ -65,6 +71,21 @@ public class App {
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();
+        }
+    }
+
+    private static void removeClient(long id) {
+        SimpleClient client = em.find(SimpleClient.class, id);
+        if (client != null) {
+            em.getTransaction().begin();
+            try {
+                em.remove(client);
+                em.getTransaction().commit();
+            } catch (Exception ex) {
+                em.getTransaction().rollback();
+            }
+        } else {
+            System.out.println("Client not found!");
         }
     }
 
