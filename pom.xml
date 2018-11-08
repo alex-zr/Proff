@@ -16,11 +16,13 @@
         <module>alex_yelisieiev_web</module>
         <module>vlad_gural_web1</module>
         <module>savkova_olga_web</module>
+        <module>savkova_olga</module>
         <!--<module>Yevhenii_Tereshchenko</module>-->
         <module>ponomarov_Vladyslav</module>
         <module>MazanenkoKostya</module>
-        <module>proff_examples</module>
         <module>mazanenko_kostya</module>
+        <module>proff_examples</module>
+        <module>vlad_gural</module>
     </modules>
 
     <properties>

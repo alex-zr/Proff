@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-@WebServlet(name = "Table", urlPatterns = "/")
+@WebServlet(name = "Table", urlPatterns = "/mytables")
 public class TableServlet extends HttpServlet
 {
     @Override
