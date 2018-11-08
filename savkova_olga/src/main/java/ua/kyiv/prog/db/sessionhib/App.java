@@ -45,8 +45,13 @@ public class App {
             addClientToGroup(client1, group);
             addClientToGroup(client2, group);
 
+            showClients(group);
+
         } catch (HibernateException ex) {
             ex.printStackTrace();
+        } finally {
+            em.close();
+            emf.close();
         }
     }
 
@@ -112,6 +117,10 @@ public class App {
             System.out.println("Group with id=" + id + " not found");
 
         return group;
+    }
+
+    private static void showClients(Group group) {
+
     }
 
 }
