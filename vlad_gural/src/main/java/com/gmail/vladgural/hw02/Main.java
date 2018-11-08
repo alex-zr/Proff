@@ -209,7 +209,7 @@ public class Main {
     private static void showOrders() throws SQLException {
         int[] widthOfColumn = {10, 15, 20, 20, 15};
         String[] nameOfColumn = {"Order #", "Customer name", "Product name", "Product quantity", "Order cost"};
-        String query = "SELECT orders.id, customers.nkame, products.name, orders.quantity, orders.cost " +
+        String query = "SELECT orders.id, customers.name, products.name, orders.quantity, orders.cost " +
                         "FROM customers, products, orders " +
                         "WHERE customer_id = customers.id AND product_id = products.id " +
                         "ORDER BY orders.id";
