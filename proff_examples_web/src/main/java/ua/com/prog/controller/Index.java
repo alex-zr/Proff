@@ -15,6 +15,6 @@ public class Index extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<String> strings = Arrays.asList("Audi", "Porshe", "BMW");
         request.setAttribute("models", strings);
-        request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
+        request.getRequestDispatcher("/results.jsp").forward(request, response);
     }
 }
