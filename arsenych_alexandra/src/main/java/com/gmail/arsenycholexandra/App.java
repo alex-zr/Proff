@@ -35,8 +35,11 @@ public class App {
             ex.printStackTrace();
         }
         showClients();
+        changeName();
+        //deleteClient();
 
     }
+
     public static void showClients(){
         Query query = em.createQuery("SELECT c FROM SimpleClient c", SimpleClient.class);
         List<SimpleClient> list = (List<SimpleClient>) query.getResultList();
@@ -45,7 +48,21 @@ public class App {
             System.out.println(c);
     }
 
-//    public static void changeName(){
-//        Query query = em.createQuery("
+    public static void changeName(){
+        Query query = em.createQuery("SELECT c FROM SimpleClient c WHERE id=3", SimpleClient.class);
+        SimpleClient client = (SimpleClient) query.getSingleResult();
+        System.out.println(client);
+        client.setName("Mikhail");
+        em.getTransaction().begin();
+        try {
+            em.getTransaction().commit();
+        } catch (Exception ex) {
+            em.getTransaction().rollback();
+        }
+    }
+
+//    public static void deleteClient(){
+//        Query query = em.createQuery(" c FROM SimpleClient c WHERE id=4", SimpleClient.class);
+//
 //    }
 }
