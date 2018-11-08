@@ -2,10 +2,7 @@ package ua.kyiv.prog.db.sessionhib;
 
 import org.hibernate.HibernateException;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.Query;
+import javax.persistence.*;
 import java.util.List;
 import java.util.Scanner;
 
@@ -30,6 +27,11 @@ public class App {
 
             showAllClients();
 
+            long id = 3L;
+            changeClientName(id);
+            SimpleClient simpleClient = em.find(SimpleClient.class, id);
+            System.out.println(simpleClient);
+
         } catch (HibernateException ex) {
             ex.printStackTrace();
         }
@@ -41,6 +43,29 @@ public class App {
 
         for (SimpleClient c : clients)
             System.out.println(c);
+    }
+
+    private static void changeClientName(long id) {
+        SimpleClient client;
+        try {
+            Query query = em.createQuery("SELECT c FROM SimpleClient c where c.id=:id", SimpleClient.class);
+            query.setParameter("id", id);
+            client = (SimpleClient) query.getSingleResult();
+        } catch (NoResultException e) {
+            System.out.println("Client not found");
+            return;
+        } catch (NonUniqueResultException e) {
+            System.out.println("Non unique result");
+            return;
+        }
+
+        em.getTransaction().begin();
+        try {
+            client.setName("Vadim");
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+        }
     }
 
 }
