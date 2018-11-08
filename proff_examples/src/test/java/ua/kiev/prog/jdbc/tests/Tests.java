@@ -30,7 +30,7 @@ public class Tests {
         }
     }
 
-    @Test
+    //@Test
     public void testCount() throws SQLException {
         try (Statement st = conn.createStatement()) {
             try (ResultSet rs = st.executeQuery("SELECT COUNT(*) FROM test")) {
@@ -40,7 +40,7 @@ public class Tests {
         }
     }
 
-    @Test
+    //@Test
     public void checkData() throws SQLException {
         try (Statement st = conn.createStatement()) {
             try (ResultSet rs = st.executeQuery("SELECT * FROM test")) {
