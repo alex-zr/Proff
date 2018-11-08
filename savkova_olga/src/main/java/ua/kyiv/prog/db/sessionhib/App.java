@@ -120,7 +120,10 @@ public class App {
     }
 
     private static void showClients(Group group) {
-
+        System.out.println("Clients from group '" + group + "'");
+        for (SimpleClient client : group.getClients()) {
+            System.out.println(client);
+        }
     }
 
 }
