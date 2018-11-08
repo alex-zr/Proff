@@ -38,6 +38,9 @@ public class App {
             removeClient(id);
             System.out.println();
 
+            addClientToGroup(1L, 2L);
+            addClientToGroup(2L, 2L);
+
         } catch (HibernateException ex) {
             ex.printStackTrace();
         }
@@ -87,6 +90,43 @@ public class App {
         } else {
             System.out.println("Client not found!");
         }
+    }
+
+    private static void addClientToGroup(long clientId, long groupId) {
+        SimpleClient client;
+        try {
+            Query query = em.createQuery("SELECT c FROM SimpleClient c where c.id=:id", SimpleClient.class);
+            query.setParameter("id", clientId);
+            client = (SimpleClient) query.getSingleResult();
+        } catch (NoResultException e) {
+            System.out.println("Client with id=" + clientId + "not found");
+            return;
+        } catch (NonUniqueResultException e) {
+            System.out.println("Non unique result");
+            return;
+        }
+
+        Group group;
+        try {
+            Query query = em.createQuery("SELECT c FROM Group c where c.id=:id", Group.class);
+            query.setParameter("id", groupId);
+            group = (Group) query.getSingleResult();
+        } catch (NoResultException e) {
+            System.out.println("Group with id=" + groupId + " not found");
+            return;
+        } catch (NonUniqueResultException e) {
+            System.out.println("Non unique result");
+            return;
+        }
+
+        em.getTransaction().begin();
+        try {
+            client.setGroup(group);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+        }
+
     }
 
 }
