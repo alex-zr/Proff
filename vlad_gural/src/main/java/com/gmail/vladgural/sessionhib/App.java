@@ -23,7 +23,7 @@ public class App {
     static EntityManager em;
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+//        Scanner sc = new Scanner(System.in);
         try {
             // create connection
             emf = Persistence.createEntityManagerFactory("JPATest");
@@ -34,12 +34,28 @@ public class App {
             ex.printStackTrace();
         }
 
+        //task1
         Query query = em.createQuery("SELECT c FROM SimpleClient c",SimpleClient.class);
         List<SimpleClient> list = (List<SimpleClient>) query.getResultList();
         for (SimpleClient sk: list)
             System.out.println(sk);
 
+        //task2
+        SimpleClient c = null;
+        c = em.find(SimpleClient.class,3l);
+        em.getTransaction().begin();
+        try{
+            c.setName("Victor");
+            em.getTransaction().commit();
+        }catch(Exception e){
+            em.getTransaction().rollback();
+        }
+
+    em.close();
+    return;
     }
+
+
 }
 
 
