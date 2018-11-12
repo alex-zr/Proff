@@ -1,9 +1,5 @@
 package com.gmail.arsenycholexandra;
 
-
-
-//import ua.kiev.prog.jpa.sample1.SimpleClient;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collections;

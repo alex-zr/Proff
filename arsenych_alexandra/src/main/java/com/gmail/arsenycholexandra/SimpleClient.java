@@ -1,8 +1,5 @@
 package com.gmail.arsenycholexandra;
 
-
-//import ua.kiev.prog.jpa.sample2.Group;
-
 import javax.persistence.*;
 
 @Entity
