@@ -2,8 +2,6 @@ package ua.kiev.prog.jsonToDb;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import org.hibernate.HibernateException;
 import org.hibernate.exception.ConstraintViolationException;
@@ -14,11 +12,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import java.io.*;
-import java.lang.reflect.Type;
-import java.net.URI;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.*;
 
 public class JsonSimpleWriteExample {

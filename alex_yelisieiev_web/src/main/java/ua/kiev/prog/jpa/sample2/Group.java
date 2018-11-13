@@ -30,7 +30,6 @@ public class Group {
         client.setGroup(this);
         clients.add(client);
 
-
     }
 
     public List<SimpleClient> getClients() {
