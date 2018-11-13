@@ -9,14 +9,20 @@ import javax.persistence.*;
 public class SimpleClient {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="id")
-    private Long id;
+    @Column(name = "id", updatable = false, nullable = false)
+    private long id;
+
+    @Column(name="age", nullable = false)
+    private Integer age;
 
     @Column(name="name", nullable = false)
     private String name;
-    private Integer age;
 
-    @ManyToOne
+
+
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinColumn(name = "group_id", nullable = false)
     private Group group;
 
     public SimpleClient() {}

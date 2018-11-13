@@ -29,6 +29,8 @@ public class Group {
     public void addClient(SimpleClient client) {
         client.setGroup(this);
         clients.add(client);
+
+
     }
 
     public List<SimpleClient> getClients() {
