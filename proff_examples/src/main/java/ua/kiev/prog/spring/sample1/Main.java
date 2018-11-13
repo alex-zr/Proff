@@ -14,7 +14,7 @@ public class Main {
 
     public static void main(String[] args) {
         // case #1
-        System.out.println(">>> Sample #1:");
+/*        System.out.println(">>> Sample #1:");
 
         LoggerAPI api = null;
         if (loggerType == LoggerType.Console)
@@ -38,10 +38,10 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
             return;
-        }
+        }*/
 
         // case #2
-        System.out.println(">>> Sample #2:");
+/*        System.out.println(">>> Sample #2:");
 
         ConfigurableApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
         try {
@@ -49,17 +49,17 @@ public class Main {
             notifier.sendSms();
         } finally {
             ctx.close();
-        }
+        }*/
 
         // case #3
-        /*System.out.println(">>> Sample #3:");
+        System.out.println(">>> Sample #3:");
 
-        ctx = new ClassPathXmlApplicationContext("/spring-config.xml");
+        ConfigurableApplicationContext ctx = new ClassPathXmlApplicationContext("/spring-config.xml");
         try {
             Notifier notifier = ctx.getBean("notifier", Notifier.class);
             notifier.sendSms();
         } finally {
             ctx.close();
-        }*/
+        }
     }
 }
