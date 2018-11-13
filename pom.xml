@@ -17,12 +17,16 @@
         <module>vlad_gural_web1</module>
         <module>savkova_olga_web</module>
         <module>savkova_olga</module>
-        <!--<module>Yevhenii_Tereshchenko</module>-->
         <module>ponomarov_Vladyslav</module>
         <module>MazanenkoKostya</module>
         <module>mazanenko_kostya</module>
         <module>proff_examples</module>
+        <module>arsenych_alexandra</module>
         <module>vlad_gural</module>
+        <module>ponomarov_Hibernate</module>
+        <module>maz_kostya</module>
+        <module>Tereshchenko Yevhenii</module>
+
     </modules>
 
     <properties>
