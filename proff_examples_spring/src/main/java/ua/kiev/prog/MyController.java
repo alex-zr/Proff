@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,7 +29,7 @@ public class MyController {
     public String onAddPhoto(Model model, @RequestParam MultipartFile photo) {
         if (photo.isEmpty())
             throw new PhotoErrorException();
-
+        //ZiInputStream
         try {
             long id = System.currentTimeMillis();
             photos.put(id, photo.getBytes());
