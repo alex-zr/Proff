@@ -1,4 +1,4 @@
-package ua.kyiv.prog.db;
+package ua.kyiv.prog.db.jdbc;
 
 import java.sql.*;
 import java.util.Scanner;
