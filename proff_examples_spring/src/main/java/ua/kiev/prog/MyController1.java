@@ -25,7 +25,7 @@ public class MyController1 {
 
     @RequestMapping("/old")
     public String onIndex() {
-        return "index";
+        return "index_old";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -42,6 +42,6 @@ public class MyController1 {
             model.addAttribute("message", "Failure");
         }
 
-        return "result";
+        return "result_old";
     }
 }
