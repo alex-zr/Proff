@@ -1,11 +1,15 @@
 package ua.kiev.prog;
 
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,28 +17,55 @@ import java.util.Map;
 @RequestMapping("/")
 public class MyController {
 
-    static Map<String, String> map = new HashMap<String, String>();
-
-    static {
-        map.put("user1", "password1");
-        map.put("user2", "password2");
-    }
+    private Map<Long, byte[]> photos = new HashMap<>();
 
     @RequestMapping("/")
     public String onIndex() {
         return "index";
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String onLogin(Model model, @RequestParam String login, @RequestParam String password) {
-        String pass = map.get(login);
+    @RequestMapping(value = "/add_photo", method = RequestMethod.POST)
+    public String onAddPhoto(Model model, @RequestParam MultipartFile photo) {
+        if (photo.isEmpty())
+            throw new PhotoErrorException();
 
-        model.addAttribute("login", login);
-        if (password.equals(pass))
-            model.addAttribute("message", "Success");
+        try {
+            long id = System.currentTimeMillis();
+            photos.put(id, photo.getBytes());
+
+            model.addAttribute("photo_id", id);
+            return "result";
+        } catch (IOException e) {
+            throw new PhotoErrorException();
+        }
+    }
+
+    @RequestMapping("/photo/{photo_id}")
+    public ResponseEntity<byte[]> onPhoto(@PathVariable("photo_id") long id) {
+        return photoById(id);
+    }
+
+    @RequestMapping(value = "/view", method = RequestMethod.POST)
+    public ResponseEntity<byte[]> onView(@RequestParam("photo_id") long id) {
+        return photoById(id);
+    }
+
+    @RequestMapping("/delete/{photo_id}")
+    public String onDelete(@PathVariable("photo_id") long id) {
+        if (photos.remove(id) == null)
+            throw new PhotoNotFoundException();
         else
-            model.addAttribute("message", "Failure");
+            return "index";
+    }
 
-        return "result";
+    private ResponseEntity<byte[]> photoById(long id) {
+        byte[] bytes = photos.get(id);
+        if (bytes == null)
+            throw new PhotoNotFoundException();
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.IMAGE_PNG);
+
+        return new ResponseEntity<>(bytes, headers, HttpStatus.OK);
     }
 }

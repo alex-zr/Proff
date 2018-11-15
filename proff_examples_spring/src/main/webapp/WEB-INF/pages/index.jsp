@@ -4,12 +4,16 @@
     <title>Prog.kiev.ua</title>
   </head>
   <body>
-    <div align="center">
-        <form action="/login" method="POST">
-            Login: <input type="text" name="login"><br>
-            Password: <input type="text" name="password"><br>
+     <div align="center">
+        <form action="/view" method="POST">
+            Photo id: <input type="text" name="photo_id">
             <input type="submit" />
         </form>
-    </div>
+
+        <form action="/add_photo" enctype="multipart/form-data" method="POST">
+            Photo: <input type="file" name="photo">
+            <input type="submit" />
+        </form>
+      </div>
   </body>
 </html>
