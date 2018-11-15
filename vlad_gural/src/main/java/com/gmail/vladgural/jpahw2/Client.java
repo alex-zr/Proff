@@ -2,7 +2,6 @@ package com.gmail.vladgural.jpahw2;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 @Entity
@@ -15,7 +14,7 @@ public class Client {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "passport")
+    @Column(name = "passport",unique = true)
     private String passport;
 
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
@@ -72,10 +71,19 @@ public class Client {
 
     @Override
     public String toString() {
-        return "Client{" +
+        StringBuilder sb = new StringBuilder();
+        sb.append("Client{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", passport='" + passport + '\'' +
-                '}';
+                '}');
+        for(Account acc: accounts){
+            sb.append("\n\r\t");
+            sb.append("Account{" +
+                        "id=" + acc.getId() +
+                        " amount=" + acc.getAmount() +
+                        '}');
+        }
+        return sb.toString();
     }
 }
