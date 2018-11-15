@@ -56,8 +56,8 @@ public class Main {
 
         ConfigurableApplicationContext ctx = new ClassPathXmlApplicationContext("/spring-config.xml");
         try {
-            Notifier notifier = ctx.getBean("notifier", Notifier.class);
-            notifier.sendSms();
+            Car car = ctx.getBean("car",Car.class);
+            System.out.println(car);
         } finally {
             ctx.close();
         }
