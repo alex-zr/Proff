@@ -15,10 +15,17 @@
             Photo: <input type="file" name="photo">
             <input type="submit" />
         </form>
-         <form action="/view_all_photo"  method="POST">
-             Show all photos and id:
-             <input type="submit" value="Запрос"/>
-         </form>
+
+        <form action="/view_all_photo"  method="POST">
+            Show all photos and id:
+            <input type="submit" value="Запрос"/>
+        </form>
+
+        <form action="/download_zip" method="POST">
+            Photo id for download zip file: <input type="text" name="photo_id">
+            <input type="submit" />
+        </form>
+
 
       </div>
   </body>

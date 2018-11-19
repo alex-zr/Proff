@@ -1,5 +1,6 @@
 package com.gmail.vladgural;
 
+import org.apache.commons.io.IOUtils;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -9,14 +10,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
 @Controller
 public class MyController {
 
     private Map<Long, byte[]> photos = new HashMap<>();
+    private Map<Long, String> fileName = new HashMap<>();
 
     @RequestMapping("/")
     public String onIndex() {
@@ -31,6 +36,7 @@ public class MyController {
         try {
             long id = System.currentTimeMillis();
             photos.put(id, photo.getBytes());
+            fileName.put(id,photo.getOriginalFilename());
 
             model.addAttribute("photo_id", id);
             return "result";
@@ -55,6 +61,42 @@ public class MyController {
         return photoById(id);
     }
 
+    @RequestMapping(value = "/download_zip", method = RequestMethod.POST)
+    public void onDownloadZip(@RequestParam("photo_id") long id, HttpServletResponse resp){
+        String originFileName = fileName.get(id);
+        String dir = "C:\\Temp\\Java\\LadWorks\\Proff\\vlad_gural_wab_spring_mvc\\src\\main\\webapp\\WEB-INF\\pages\\";
+        File file = new File(dir + Long.toString(id) + ".zip");
+
+        try (ZipOutputStream zos = new ZipOutputStream(
+                                    new FileOutputStream(file))) {
+            ZipEntry entry = new ZipEntry(originFileName);
+            zos.putNextEntry(entry);
+            zos.write(photos.get(id));
+            zos.closeEntry();
+
+        } catch (FileNotFoundException e) {
+
+        } catch (IOException e) {
+
+        }
+
+        try(FileInputStream fis = new FileInputStream(file)){
+            resp.setContentType("application/force-download");
+
+            resp.setHeader("Content-Disposition", "attachment; filename="+Long.toString(id)+".zip");
+            resp.setContentLength((int) file.length());
+            IOUtils.copy(fis, resp.getOutputStream());
+            resp.flushBuffer();
+        }catch (FileNotFoundException e){
+
+        }catch (IOException e){
+
+        }
+
+        if(file.exists()){
+            file.delete();
+        }
+    }
 
     @RequestMapping(value = "/delete_selected", method = RequestMethod.POST)
     public String onDeleteSelected(@RequestBody String s){

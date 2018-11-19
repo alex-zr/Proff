@@ -13,26 +13,30 @@
             photos = (Map<Long, byte[]>)request.getAttribute("map");
         %>
         <form action="/delete_selected" method="post">
-            <table>
+            <table style="border: 2px solid black">
                 <%for(Map.Entry<Long, byte[]> entry: photos.entrySet()){%>
-                <tr>
-                    <td>
+                <tr style="border: 2px solid black">
+                    <td style="border: 2px solid black">
                         ID
                     </td>
-                    <td>
+                    <td style="border: 2px solid black">
                         <%  id = entry.getKey();
                             out.println(id);%>
                     </td>
-                    <td>
+                    <td style="border: 2px solid black">
                         <img src="/photo/<%=id%>"  style="width:250px"/>
                     </td>
-                    <td>
+                    <td style="border: 2px solid black">
                         <input type="checkbox" name="name<%=id%>" value="<%=id%>">Delete
                     </td>
                 </tr>
                 <%}%>
             </table>
-            <input type="submit" value="Delete selected"/>
+            <% if(!photos.isEmpty()) { %>
+
+                <input type="submit" value="Delete selected"/>
+
+            <% } %>
         </form>
     </div>
 </body>
