@@ -35,24 +35,24 @@ public class App {
         }
 
         //task1
-        Query query = em.createQuery("SELECT c FROM SimpleClient c",SimpleClient.class);
+        Query query = em.createQuery("SELECT c FROM SimpleClient c", SimpleClient.class);
         List<SimpleClient> list = (List<SimpleClient>) query.getResultList();
-        for (SimpleClient sk: list)
+        for (SimpleClient sk : list)
             System.out.println(sk);
 
         //task2
         SimpleClient c = null;
-        c = em.find(SimpleClient.class,3l);
+        c = em.find(SimpleClient.class, 3l);
         em.getTransaction().begin();
-        try{
+        try {
             c.setName("Victor");
             em.getTransaction().commit();
-        }catch(Exception e){
+        } catch (Exception e) {
             em.getTransaction().rollback();
         }
 
-    em.close();
-    return;
+        em.close();
+        return;
     }
 
 

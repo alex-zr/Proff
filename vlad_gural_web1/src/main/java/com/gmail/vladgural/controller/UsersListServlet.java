@@ -20,7 +20,7 @@ public class UsersListServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Users users = new Users();
 
-        for(LogPass lp: lpList.getList()){
+        for (LogPass lp : lpList.getList()) {
             String str = null;
             str = lp.getLogin();
             str += " -> access is ";

@@ -1,22 +1,24 @@
 package lessonTask;
+
 import javax.persistence.*;
 
 @Entity
-@Table(name="clients")
+@Table(name = "clients")
 public class SimpleClientMy {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="id")
+    @Column(name = "id")
     private Long id;
 
-    @Column(name="name", nullable = false)
+    @Column(name = "name", nullable = false)
     private String name;
     private Integer age;
 
     @ManyToOne
     private GroupMy group;
 
-    public SimpleClientMy() {}
+    public SimpleClientMy() {
+    }
 
     public SimpleClientMy(String name, int age) {
         this.name = name;

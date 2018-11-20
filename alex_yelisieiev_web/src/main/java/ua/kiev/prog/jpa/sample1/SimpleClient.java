@@ -5,27 +5,26 @@ import ua.kiev.prog.jpa.sample2.Group;
 import javax.persistence.*;
 
 @Entity
-@Table(name="clients")
+@Table(name = "clients")
 public class SimpleClient {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", updatable = false, nullable = false)
     private long id;
 
-    @Column(name="age", nullable = false)
+    @Column(name = "age", nullable = false)
     private Integer age;
 
-    @Column(name="name", nullable = false)
+    @Column(name = "name", nullable = false)
     private String name;
-
-
 
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "group_id", nullable = false)
     private Group group;
 
-    public SimpleClient() {}
+    public SimpleClient() {
+    }
 
     public SimpleClient(String name, int age) {
         this.name = name;

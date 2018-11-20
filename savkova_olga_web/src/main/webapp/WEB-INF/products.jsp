@@ -14,8 +14,7 @@
     </tr>
     <%
         Map<Integer, String> products = (Map<Integer, String>) request.getAttribute("products");
-        for (Map.Entry<Integer, String> product : products.entrySet())
-        {
+        for (Map.Entry<Integer, String> product : products.entrySet()) {
             out.println("<tr><td>" + product.getKey() + "</td><td>" + product.getValue() + "</td></tr>");
         }
     %>

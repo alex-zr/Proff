@@ -3,21 +3,22 @@ package ua.kiev.prog.jpa.sample2;
 import javax.persistence.*;
 
 //@Entity
-@Table(name="Clients")
+@Table(name = "Clients")
 public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column(name="name", nullable = false)
+    @Column(name = "name", nullable = false)
     private String name;
     private int age;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="group_id")
+    @JoinColumn(name = "group_id")
     private Group group;
 
-    public Client() {}
+    public Client() {
+    }
 
     public Client(String name, int age) {
         this.name = name;

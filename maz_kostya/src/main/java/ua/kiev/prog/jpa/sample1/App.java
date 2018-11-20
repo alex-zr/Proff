@@ -57,8 +57,8 @@ public class App {
     }
 
     public static Dish findDishByName(String name, List<Dish> list) {
-        for(int i = 0; i < list.size(); i++){
-            if(list.get(i).getDishName().equals(name)){
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getDishName().equals(name)) {
                 return list.get(i);
             }
         }
@@ -72,17 +72,17 @@ public class App {
         double totalWeight = 0;
 
         List<Dish> dishes = new ArrayList<>();
-        while(true){
+        while (true) {
             System.out.println("Enter the dish or \"exit\" to print order ");
             String str = sc.nextLine();
-            if(str.equals("exit")){
+            if (str.equals("exit")) {
                 break;
             }
             try {
                 totalWeight += findDishByName(str, list).getDishWeight();
-                if(totalWeight <= 1000){
-                   dishes.add(findDishByName(str, list));
-                }else{
+                if (totalWeight <= 1000) {
+                    dishes.add(findDishByName(str, list));
+                } else {
                     break;
                 }
             } catch (NullPointerException e) {

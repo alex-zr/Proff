@@ -3,7 +3,7 @@ package ua.kiev.prog.jdbc.tests;
 import java.sql.*;
 
 public class Main {
-    public static void main(String[] args) throws SQLException{
+    public static void main(String[] args) throws SQLException {
         DbProperties props = new DbProperties();
 
         try (Connection conn = DriverManager.getConnection(props.getUrl(), props.getUser(), props.getPassword())) {

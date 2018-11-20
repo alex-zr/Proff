@@ -7,19 +7,20 @@ import java.util.Collections;
 import java.util.List;
 
 @Entity
-@Table(name="Groups")
+@Table(name = "Groups")
 public class GroupMy {
     @Id
     @GeneratedValue
     private long id;
 
-    @Column(name="name", nullable = false)
+    @Column(name = "name", nullable = false)
     private String name;
 
     @OneToMany(mappedBy = "group", cascade = CascadeType.ALL)
     private List<SimpleClientMy> clients = new ArrayList<>();
 
-    public GroupMy() {}
+    public GroupMy() {
+    }
 
     public GroupMy(String name) {
         this.name = name;

@@ -10,14 +10,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 @WebServlet(name = "Table", urlPatterns = "/mytables")
-public class TableServlet extends HttpServlet
-{
+public class TableServlet extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
-    {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Map<Integer, String> products = new HashMap<>();
-        for (int i = 0; i < 5; i++)
-        {
+        for (int i = 0; i < 5; i++) {
             products.put((i + 1), "product " + (i + 1));
         }
 

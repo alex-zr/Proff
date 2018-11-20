@@ -3,21 +3,22 @@ package com.gmail.arsenycholexandra;
 import javax.persistence.*;
 
 @Entity
-@Table(name="clients")
+@Table(name = "clients")
 public class SimpleClient {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="id")
+    @Column(name = "id")
     private Long id;
 
-    @Column(name="name", nullable = false)
+    @Column(name = "name", nullable = false)
     private String name;
     private Integer age;
 
     @ManyToOne
     private Group group;
 
-    public SimpleClient() {}
+    public SimpleClient() {
+    }
 
     public SimpleClient(String name, int age) {
         this.name = name;

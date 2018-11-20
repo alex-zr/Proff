@@ -15,7 +15,7 @@ public class JsonMessages {
         int j = lp.getNumberOfReadMessages();
         for (int i = fromIndex; i < sourceList.size(); i++) {
             msg = sourceList.get(i);
-            if(msg.getTo()==null || msg.getFrom().equals(lp.getLogin()) || msg.getTo().equals(lp.getLogin()))
+            if (msg.getTo() == null || msg.getFrom().equals(lp.getLogin()) || msg.getTo().equals(lp.getLogin()))
                 list.add(msg);
             j++;
         }

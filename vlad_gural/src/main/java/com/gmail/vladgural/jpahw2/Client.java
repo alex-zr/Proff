@@ -14,7 +14,7 @@ public class Client {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "passport",unique = true)
+    @Column(name = "passport", unique = true)
     private String passport;
 
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
@@ -36,10 +36,10 @@ public class Client {
         this.accounts = accounts;
     }
 
-    public void addAccount(Account account){
+    public void addAccount(Account account) {
         account.setClient(this);
 
-        if(!accounts.contains(account))
+        if (!accounts.contains(account))
             accounts.add(account);
     }
 
@@ -68,7 +68,6 @@ public class Client {
     }
 
 
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -77,12 +76,12 @@ public class Client {
                 ", name='" + name + '\'' +
                 ", passport='" + passport + '\'' +
                 '}');
-        for(Account acc: accounts){
+        for (Account acc : accounts) {
             sb.append("\n\r\t");
             sb.append("Account{" +
-                        "id=" + acc.getId() +
-                        " amount=" + acc.getAmount() +
-                        '}');
+                    "id=" + acc.getId() +
+                    " amount=" + acc.getAmount() +
+                    '}');
         }
         return sb.toString();
     }

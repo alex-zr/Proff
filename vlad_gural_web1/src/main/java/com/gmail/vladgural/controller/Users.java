@@ -6,15 +6,15 @@ import java.util.List;
 public class Users {
     private List<String> users;
 
-    public Users(){
+    public Users() {
         users = new LinkedList<>();
     }
 
-    public void addUser(String user){
+    public void addUser(String user) {
         users.add(user);
     }
 
-    public List<String> getList(){
+    public List<String> getList() {
         return this.users;
     }
 }

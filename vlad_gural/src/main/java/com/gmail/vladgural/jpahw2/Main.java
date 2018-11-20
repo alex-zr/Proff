@@ -60,45 +60,45 @@ public class Main {
 
     }
 
-    public static void createDonor(){
+    public static void createDonor() {
         Client cl = new Client("Donor", "OUTSIDE");
         em.getTransaction().begin();
-        try{
+        try {
             em.persist(cl);
             em.getTransaction().commit();
-        }catch (Exception e){
+        } catch (Exception e) {
             em.getTransaction().rollback();
         }
         Account account = new Account();
 
 
         em.getTransaction().begin();
-        try{
+        try {
             cl.addAccount(account);
             em.getTransaction().commit();
-        }catch (Exception e){
+        } catch (Exception e) {
             em.getTransaction().rollback();
         }
     }
 
-    public static void addClient(){
+    public static void addClient() {
         System.out.println();
         System.out.println("Enter client's name");
         String clName = scanner.nextLine();
         System.out.println("Enter client passport's #");
         String clPassport = scanner.nextLine();
 
-        Client cl = new Client(clName,clPassport);
+        Client cl = new Client(clName, clPassport);
         em.getTransaction().begin();
-        try{
+        try {
             em.persist(cl);
             em.getTransaction().commit();
-        }catch (Exception e){
+        } catch (Exception e) {
             em.getTransaction().rollback();
         }
     }
 
-    public static void addAccount(){
+    public static void addAccount() {
         Client client;
         Account account = new Account();
 
@@ -118,24 +118,24 @@ public class Main {
         }
 
         em.getTransaction().begin();
-        try{
+        try {
             client.addAccount(account);
             em.getTransaction().commit();
-        }catch (Exception e){
+        } catch (Exception e) {
             em.getTransaction().rollback();
         }
 
     }
 
-    public static void transaction(TrType trType){
+    public static void transaction(TrType trType) {
         String sAccIdFrom = null;
         long accIdFrom = 0;
         String sAccIdTo = null;
         long accIdTo = 0;
 
-        switch (trType){
+        switch (trType) {
             case OutTo:
-                accIdFrom =1;
+                accIdFrom = 1;
 
                 System.out.println("Enter \'id\' account \"TO\"");
                 sAccIdTo = scanner.nextLine();
@@ -174,7 +174,7 @@ public class Main {
         Account accFrom = em.find(Account.class, accIdFrom);
         Account accTo = em.find(Account.class, accIdTo);
 
-        if(accFrom==null || accTo==null){
+        if (accFrom == null || accTo == null) {
             System.out.println("Not found account");
             return;
         }
@@ -182,15 +182,15 @@ public class Main {
         amFrom = accFrom.getAmount();
         amTo = accTo.getAmount();
 
-        if(trType != TrType.OutTo && amFrom<amount){
+        if (trType != TrType.OutTo && amFrom < amount) {
             System.out.println("Not enough money on account");
             return;
         }
 
-        amFrom-=amount;
-        amTo+=amount;
+        amFrom -= amount;
+        amTo += amount;
 
-        Transaction transaction = new Transaction(amount,accFrom, accTo);
+        Transaction transaction = new Transaction(amount, accFrom, accTo);
 
         em.getTransaction().begin();
         try {
@@ -199,17 +199,17 @@ public class Main {
             accFrom.addTransactionFrom(transaction);
             accTo.addTransactionTo(transaction);
             em.getTransaction().commit();
-        }catch (Exception e){
+        } catch (Exception e) {
             em.getTransaction().rollback();
         }
     }
 
-    public static void showClientsAndAccounts(){
+    public static void showClientsAndAccounts() {
         List<Client> clients = new ArrayList<>();
         Query query = em.createQuery("FROM Client");
         clients = query.getResultList();
         System.out.println();
-        for (Client cl: clients){
+        for (Client cl : clients) {
             System.out.println(cl);
         }
         System.out.println();

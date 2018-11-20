@@ -10,7 +10,7 @@ public class MenuOfRestaurant {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "name_of_dish",nullable = false)
+    @Column(name = "name_of_dish", nullable = false)
     private String nameOfDish;
 
     @Column(name = "price", nullable = false)
@@ -22,11 +22,11 @@ public class MenuOfRestaurant {
     @Column(name = "discount", nullable = false)
     private Boolean discount;
 
-    public MenuOfRestaurant(){
+    public MenuOfRestaurant() {
 
     }
 
-    public MenuOfRestaurant(String nameOfDish, Double price, Double weight, Boolean discount){
+    public MenuOfRestaurant(String nameOfDish, Double price, Double weight, Boolean discount) {
         this.nameOfDish = nameOfDish;
         this.price = price;
         this.weight = weight;

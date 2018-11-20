@@ -7,7 +7,7 @@ public class Main {
     static final String DB_USER = "root";
     static final String DB_PASSWORD = "password";
 
-    public static void main(String[] args) throws SQLException{
+    public static void main(String[] args) throws SQLException {
         try (Connection conn = DriverManager.getConnection(DB_CONNECTION, DB_USER, DB_PASSWORD)) {
             try (CallableStatement cs = conn.prepareCall("{CALL Test(?, ?, ?)}")) {
                 cs.setInt(1, 20); // in

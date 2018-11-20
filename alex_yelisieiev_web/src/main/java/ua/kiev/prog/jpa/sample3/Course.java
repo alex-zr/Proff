@@ -6,10 +6,10 @@ import java.util.Collections;
 import java.util.List;
 
 //@Entity
-@Table(name="Courses")
+@Table(name = "Courses")
 @NamedQueries({
-        @NamedQuery(name="Course.findAll", query = "SELECT c FROM Course c"),
-        @NamedQuery(name="Course.findByName", query = "SELECT c FROM Course c WHERE c.name = :name")
+        @NamedQuery(name = "Course.findAll", query = "SELECT c FROM Course c"),
+        @NamedQuery(name = "Course.findByName", query = "SELECT c FROM Course c WHERE c.name = :name")
 })
 public class Course {
     @Id
@@ -25,16 +25,17 @@ public class Course {
     @ManyToMany(mappedBy = "courses", cascade = CascadeType.ALL)
     List<Client> clients = new ArrayList<>();
 
-    public Course() {}
+    public Course() {
+    }
 
     public Course(String name) {
         this.name = name;
     }
 
     public void addClient(Client client) {
-        if ( ! clients.contains(client))
+        if (!clients.contains(client))
             clients.add(client);
-        if ( ! client.courses.contains(this))
+        if (!client.courses.contains(this))
             client.courses.add(this);
     }
 

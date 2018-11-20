@@ -56,7 +56,7 @@ public class Main {
 
         ConfigurableApplicationContext ctx = new ClassPathXmlApplicationContext("/spring-config.xml");
         try {
-            Car car = ctx.getBean("car",Car.class);
+            Car car = ctx.getBean("car", Car.class);
             System.out.println(car);
         } finally {
             ctx.close();

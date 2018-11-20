@@ -25,18 +25,18 @@ public class AddServlet extends HttpServlet {
         String bufStr = new String(buf, "UTF-8");
 
         Message msg = Message.fromJSON(bufStr);
-        if(msg == null) {
+        if (msg == null) {
             return;
         }
 
         to = msg.getTo();
-        if(to == null) {
+        if (to == null) {
             msgList.add(msg);
             return;
         }
 
-        for(LogPass lp: lpList.getList()){
-            if(lp.getLogin().equals(to)) {
+        for (LogPass lp : lpList.getList()) {
+            if (lp.getLogin().equals(to)) {
                 msgList.add(msg);
                 return;
             }

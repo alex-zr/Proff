@@ -27,12 +27,12 @@ public class Account {
     public Account() {
     }
 
-    public void addTransactionFrom(Transaction transaction){
+    public void addTransactionFrom(Transaction transaction) {
         transactionsFrom.add(transaction);
         transaction.setAccountFrom(this);
     }
 
-    public void addTransactionTo(Transaction transaction){
+    public void addTransactionTo(Transaction transaction) {
         transactionsTo.add(transaction);
         transaction.setAccountTo(this);
     }

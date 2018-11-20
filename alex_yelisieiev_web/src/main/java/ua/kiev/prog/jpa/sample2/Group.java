@@ -8,19 +8,20 @@ import java.util.Collections;
 import java.util.List;
 
 @Entity
-@Table(name="Groups1")
+@Table(name = "Groups1")
 public class Group {
     @Id
     @GeneratedValue
     private long id;
 
-    @Column(name="name", nullable = false)
+    @Column(name = "name", nullable = false)
     private String name;
 
     @OneToMany(mappedBy = "group", cascade = CascadeType.ALL)
     private List<SimpleClient> clients = new ArrayList<>();
 
-    public Group() {}
+    public Group() {
+    }
 
     public Group(String name) {
         this.name = name;

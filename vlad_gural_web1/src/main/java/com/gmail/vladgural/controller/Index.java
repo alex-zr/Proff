@@ -13,9 +13,9 @@ import java.util.List;
 public class Index extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<String> strList = Arrays.asList("Audy","Porshe","BMW");
+        List<String> strList = Arrays.asList("Audy", "Porshe", "BMW");
 
-        request.setAttribute("Models",strList);
+        request.setAttribute("Models", strList);
         request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
     }
 }

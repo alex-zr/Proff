@@ -20,9 +20,9 @@ public class GetListServlet extends HttpServlet {
         String loginStr = req.getParameter("login");
         LogPass lp = lpList.checkLogin(loginStr);
         int from = lp.getNumberOfReadMessages();
-            if (from < 0) {
-                from = 0;
-            }
+        if (from < 0) {
+            from = 0;
+        }
         resp.setContentType("application/json");
 
         String json = msgList.toJSON(from, lp);

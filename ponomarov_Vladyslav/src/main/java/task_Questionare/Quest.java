@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.concurrent.atomic.AtomicInteger;
 
-@WebServlet( urlPatterns = {"/answer"})
+@WebServlet(urlPatterns = {"/answer"})
 public class Quest extends HttpServlet {
     static final String TEMPLATE = "<html><head><title>Statistic</title></head><body><h2 align=\"center\">%s</h1></body></html>";
     private AtomicInteger count = new AtomicInteger(0);

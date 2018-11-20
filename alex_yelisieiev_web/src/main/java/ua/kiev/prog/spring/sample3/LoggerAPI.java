@@ -19,5 +19,6 @@ public abstract class LoggerAPI {
     protected abstract void doLog(String msg) throws IOException;
 
     public abstract void open() throws IOException;
+
     public abstract void close();
 }

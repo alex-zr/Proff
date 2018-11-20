@@ -17,14 +17,14 @@ public class GetThread implements Runnable {
 
     public GetThread(String login) {
         gson = new GsonBuilder().create();
-        this.login=login;
+        this.login = login;
     }
 
     @Override
     public void run() {
         try {
-            while ( ! Thread.interrupted()) {
-                URL url = new URL(Utils.getURL() + "/get?login="+login);
+            while (!Thread.interrupted()) {
+                URL url = new URL(Utils.getURL() + "/get?login=" + login);
                 HttpURLConnection http = (HttpURLConnection) url.openConnection();
 
                 InputStream is = http.getInputStream();

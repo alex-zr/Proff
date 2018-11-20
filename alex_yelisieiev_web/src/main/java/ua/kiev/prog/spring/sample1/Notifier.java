@@ -4,7 +4,7 @@ public class Notifier {
     private LoggerAPI loggerAPI;
 
     public Notifier(LoggerAPI loggerAPI) {
-       this.loggerAPI = loggerAPI;
+        this.loggerAPI = loggerAPI;
     }
 
     public void sendSms() {

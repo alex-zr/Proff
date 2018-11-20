@@ -17,7 +17,7 @@ public class AppConfig {
         return new FileLoggerAPI("log.txt");
     }
 
-    @Bean(name="consoleLogger")
+    @Bean(name = "consoleLogger")
     public LoggerAPI consoleLoggerAPI() {
         return new ConsoleLoggerAPI();
     }

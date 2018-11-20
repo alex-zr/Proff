@@ -6,7 +6,7 @@ public class LogPass {
     private boolean access;
     private int numberOfReadMessages;
 
-    public LogPass(String login, String passWord){
+    public LogPass(String login, String passWord) {
         this.login = login;
         this.passWord = passWord;
         this.access = false;

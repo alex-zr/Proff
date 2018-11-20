@@ -16,10 +16,10 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        try{
+        try {
             emf = Persistence.createEntityManagerFactory("JPAHW1");
             em = emf.createEntityManager();
-            while(true){
+            while (true) {
                 System.out.println();
                 System.out.println("1: Enter new dish");
                 System.out.println("2: Select by price");
@@ -28,7 +28,7 @@ public class Main {
                 System.out.println();
                 String inputStr = scanner.nextLine();
 
-                switch (inputStr){
+                switch (inputStr) {
                     case "1":
                         addNewDish(scanner);
                         break;
@@ -47,7 +47,7 @@ public class Main {
             }
 
 
-        }finally {
+        } finally {
             scanner.close();
             em.close();
             emf.close();
@@ -55,11 +55,11 @@ public class Main {
 
     }
 
-    private static void addNewDish(Scanner scanner){
+    private static void addNewDish(Scanner scanner) {
         String nameOfDish = "";
         Double prise = 0.0;
         Double weight = 0.0;
-        String sDiscount ="";
+        String sDiscount = "";
         Boolean discount = false;
 
         System.out.println();
@@ -71,7 +71,7 @@ public class Main {
             try {
                 prise = Double.valueOf(scanner.nextLine());
                 break;
-            }catch (NumberFormatException e){
+            } catch (NumberFormatException e) {
                 System.out.println("Incorrect data");
             }
         }
@@ -81,28 +81,28 @@ public class Main {
             try {
                 weight = Double.valueOf(scanner.nextLine());
                 break;
-            }catch (NumberFormatException e){
+            } catch (NumberFormatException e) {
                 System.out.println("Incorrect data");
             }
         }
 
         System.out.println("Is there discount? (yes = true)");
         sDiscount = scanner.nextLine();
-        if(sDiscount.equals("yes"))
+        if (sDiscount.equals("yes"))
             discount = true;
         System.out.println();
 
         em.getTransaction().begin();
-        try{
+        try {
             MenuOfRestaurant mor = new MenuOfRestaurant(nameOfDish, prise, weight, discount);
             em.persist(mor);
             em.getTransaction().commit();
-        }catch (Exception e){
+        } catch (Exception e) {
             em.getTransaction().rollback();
         }
     }
 
-    private static void selectByPrice(Scanner scanner){
+    private static void selectByPrice(Scanner scanner) {
         Double minPrice = 0.0;
         Double maxPrice = 0.0;
 
@@ -112,7 +112,7 @@ public class Main {
             try {
                 minPrice = Double.valueOf(scanner.nextLine());
                 break;
-            }catch (NumberFormatException e){
+            } catch (NumberFormatException e) {
                 System.out.println("Incorrect data");
             }
         }
@@ -122,7 +122,7 @@ public class Main {
             try {
                 maxPrice = Double.valueOf(scanner.nextLine());
                 break;
-            }catch (NumberFormatException e){
+            } catch (NumberFormatException e) {
                 System.out.println("Incorrect data");
             }
         }
@@ -130,28 +130,28 @@ public class Main {
 
         List<MenuOfRestaurant> list = new ArrayList<>();
         Query query = em.createQuery("SELECT m FROM MenuOfRestaurant m WHERE " +
-                                            "m.price>=:minprice AND m.price<=:maxprice");
+                "m.price>=:minprice AND m.price<=:maxprice");
         query.setParameter("minprice", minPrice);
-        query.setParameter("maxprice",maxPrice);
+        query.setParameter("maxprice", maxPrice);
         list = query.getResultList();
 
-        for(MenuOfRestaurant menu:list)
+        for (MenuOfRestaurant menu : list)
             System.out.println(menu);
         System.out.println();
     }
 
-    private static void selectWithDiscount(){
+    private static void selectWithDiscount() {
         List<MenuOfRestaurant> list = new ArrayList<>();
         Query query = em.createQuery("SELECT m FROM MenuOfRestaurant m WHERE " +
-                                            "m.discount=true");
+                "m.discount=true");
         list = query.getResultList();
         System.out.println();
-        for(MenuOfRestaurant menu:list)
+        for (MenuOfRestaurant menu : list)
             System.out.println(menu);
         System.out.println();
     }
 
-    private static void selectByWeight(){
+    private static void selectByWeight() {
         Random ran = new Random();
         Double totalWeight = 0.0;
         Double differenceWeight = 1000.0;
@@ -163,23 +163,22 @@ public class Main {
         list = query.getResultList();
 
         int size = list.size();
-        while (true){
+        while (true) {
             int i = (int) (ran.nextInt(size));
             MenuOfRestaurant mor = list.get(i);
             Double weight = mor.getWeight();
-            if(weight<differenceWeight) {
+            if (weight < differenceWeight) {
                 setList.add(mor);
-                totalWeight+=weight;
-                differenceWeight-=weight;
-            }
-            else
+                totalWeight += weight;
+                differenceWeight -= weight;
+            } else
                 fail--;
-            if(fail==0)
+            if (fail == 0)
                 break;
         }
         System.out.println();
         System.out.println("Set of dishes is");
-        for(MenuOfRestaurant mor:setList)
+        for (MenuOfRestaurant mor : setList)
             System.out.println(mor);
         System.out.println("Total weight is " + totalWeight + " gm");
         System.out.println();

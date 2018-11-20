@@ -9,7 +9,7 @@ public class Notifier {
 
     @Autowired
     public Notifier(LoggerAPI loggerAPI) {
-       this.loggerAPI = loggerAPI;
+        this.loggerAPI = loggerAPI;
     }
 
     public void sendSms() {

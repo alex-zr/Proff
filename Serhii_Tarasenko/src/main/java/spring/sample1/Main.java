@@ -55,7 +55,7 @@ public class Main {
         try {
 //            Notifier notifier = ctx.getBean("notifier", Notifier.class);
 //            notifier.sendSms();
-            Car car = ctx.getBean("car",Car.class);
+            Car car = ctx.getBean("car", Car.class);
             System.out.println(car);
         } finally {
             ctx.close();

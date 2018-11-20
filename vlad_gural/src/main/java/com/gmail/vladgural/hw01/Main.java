@@ -147,12 +147,12 @@ public class Main {
                 ResultSetMetaData md = rs.getMetaData();
 
                 for (int i = 1; i <= md.getColumnCount(); i++)
-                    System.out.print(String.format("%12s",md.getColumnName(i)));
+                    System.out.print(String.format("%12s", md.getColumnName(i)));
                 System.out.println();
 
                 while (rs.next()) {
                     for (int i = 1; i <= md.getColumnCount(); i++) {
-                        System.out.print(String.format("%12s",rs.getString(i)));
+                        System.out.print(String.format("%12s", rs.getString(i)));
                     }
                     System.out.println();
                 }

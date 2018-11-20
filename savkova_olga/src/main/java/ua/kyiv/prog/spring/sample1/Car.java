@@ -42,7 +42,7 @@ public class Car {
         return "Car{" +
                 "model='" + model + '\'' +
                 ", year=" + year +
-                ", "+driver.toString()+
+                ", " + driver.toString() +
                 '}';
     }
 }

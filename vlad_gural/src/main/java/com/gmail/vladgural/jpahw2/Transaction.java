@@ -17,8 +17,8 @@ public class Transaction {
     private Account accountFrom;
 
     @ManyToOne
-    @JoinColumn(name ="id_account_to")
-    private  Account accountTo;
+    @JoinColumn(name = "id_account_to")
+    private Account accountTo;
 
     public Transaction() {
     }

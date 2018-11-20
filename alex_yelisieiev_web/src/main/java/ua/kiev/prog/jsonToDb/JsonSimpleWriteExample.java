@@ -32,16 +32,16 @@ public class JsonSimpleWriteExample {
         }
         for (Iterator<String> iter = lines.iterator(); iter.hasNext(); ) {
             String element = iter.next();
-            Gson  gson = new GsonBuilder().setPrettyPrinting().setLenient().create();
+            Gson gson = new GsonBuilder().setPrettyPrinting().setLenient().create();
             StringReader str2 = new StringReader(element);
             JsonReader jsonReadereader = new JsonReader(str2);
             JTable jTable = gson.fromJson(jsonReadereader, JTable.class);
-            if (jTable.getDatasetKey()!=null) {
+            if (jTable.getDatasetKey() != null) {
                 emf = Persistence.createEntityManagerFactory("JPATest");
                 em = emf.createEntityManager();
                 try {
                     jsonSimpleWriteExample.add(jTable);
-                } catch (ConstraintViolationException e){
+                } catch (ConstraintViolationException e) {
                     e.printStackTrace();
 
                 }
@@ -52,36 +52,38 @@ public class JsonSimpleWriteExample {
 
         jsonSimpleWriteExample.getAll();
     }
-    public void getAll(){
+
+    public void getAll() {
         try {
-        TypedQuery<JTable> namedQuery = em.createNamedQuery("JTable.getAll", JTable.class);
-        List<JTable> list = (List<JTable>) namedQuery.getResultList();
+            TypedQuery<JTable> namedQuery = em.createNamedQuery("JTable.getAll", JTable.class);
+            List<JTable> list = (List<JTable>) namedQuery.getResultList();
 
-        for (JTable c: list) {
-            System.out.println(c);
+            for (JTable c : list) {
+                System.out.println(c);
+            }
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
         }
-    } catch (HibernateException ex) {
-        ex.printStackTrace();
-    }
-     //   return namedQuery.getResultList();
+        //   return namedQuery.getResultList();
     }
 
-    public void getClients () {
+    public void getClients() {
         try {
             // create connection
             emf = Persistence.createEntityManagerFactory("JPATest");
             em = emf.createEntityManager();
-            TypedQuery<SimpleClient> query = em.createQuery("select c from SimpleClient c",SimpleClient.class);
+            TypedQuery<SimpleClient> query = em.createQuery("select c from SimpleClient c", SimpleClient.class);
             List<SimpleClient> list = (List<SimpleClient>) query.getResultList();
 
-            for (SimpleClient c: list) {
+            for (SimpleClient c : list) {
                 System.out.println(c);
             }
         } catch (HibernateException ex) {
             ex.printStackTrace();
         }
     }
-    public JTable add(JTable car){
+
+    public JTable add(JTable car) {
         em.getTransaction().begin();
         JTable carFromDB = em.merge(car);
         em.getTransaction().commit();

@@ -37,30 +37,30 @@ public class Main {
 
             //Проверка на доступ про помощи
             //сервлета LogPassServlet
-            logResponse = checkAccess(login,passWord);
+            logResponse = checkAccess(login, passWord);
 
-            if(logResponse.equals("Access is denied"))
+            if (logResponse.equals("Access is denied"))
                 return;
 
             //Запрос на вывод зарегестрированных пользователей
             //сервлет UsersListServlet
             System.out.println("do you want display users list (y/n)");
-            if(scanner.nextLine().equals("y")) {
+            if (scanner.nextLine().equals("y")) {
                 URL url = new URL(Utils.getURL() + "/userslist");
                 HttpURLConnection http = (HttpURLConnection) url.openConnection();
                 InputStream is = http.getInputStream();
 
-                while(true) {
+                while (true) {
                     buf = requestBodyToArray(is);
-                    if(buf.length!=0)
+                    if (buf.length != 0)
                         break;
                 }
                 String strBuf = new String(buf, "UTF-8");
                 Gson gson = new GsonBuilder().create();
-                Users users = gson.fromJson(strBuf,Users.class);
+                Users users = gson.fromJson(strBuf, Users.class);
 
                 System.out.println("List users");
-                for(String str:users.getList()){
+                for (String str : users.getList()) {
                     System.out.println(str);
                 }
                 is.close();
@@ -83,7 +83,7 @@ public class Main {
                 if (str.isEmpty()) break;
 
                 messTo = str.split(" -> ");
-                if(messTo.length==1)
+                if (messTo.length == 1)
                     m = new Message(login, null, messTo[0]);
                 else
                     m = new Message(login, messTo[1], messTo[0]);
@@ -119,14 +119,14 @@ public class Main {
             } catch (IOException e) {
 
             }
-        } catch (MalformedURLException e){
+        } catch (MalformedURLException e) {
 
-        } catch (IOException e){
+        } catch (IOException e) {
 
         }
         try {
             logResponse = new String(buf, "UTF-8");
-        } catch (UnsupportedEncodingException e){
+        } catch (UnsupportedEncodingException e) {
 
         }
         System.out.println(logResponse);

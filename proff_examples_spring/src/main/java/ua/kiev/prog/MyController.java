@@ -29,7 +29,7 @@ public class MyController {
     public String onAddPhoto(Model model, @RequestParam MultipartFile photo) {
         if (photo.isEmpty())
             throw new PhotoErrorException();
-        //ZiInputStream
+        //ZiInputStream j2ee.coach
         try {
             long id = System.currentTimeMillis();
             photos.put(id, photo.getBytes());

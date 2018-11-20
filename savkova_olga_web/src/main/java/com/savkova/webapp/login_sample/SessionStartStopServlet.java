@@ -9,22 +9,18 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet(urlPatterns = "/session_manager")
-public class SessionStartStopServlet extends HttpServlet
-{
+public class SessionStartStopServlet extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
-    {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String action = req.getParameter("action");
         String name = req.getParameter("name");
 
-        if (action == null)
-        {
+        if (action == null) {
             action = "default";
         }
 
         HttpSession session;
-        switch (action)
-        {
+        switch (action) {
             case "start":
                 session = req.getSession(true);
                 session.setAttribute("name", name);
@@ -37,8 +33,7 @@ public class SessionStartStopServlet extends HttpServlet
         }
 
         session = req.getSession(false);
-        if (session == null)
-        {
+        if (session == null) {
             resp.getWriter().write("No active session.");
             return;
         }

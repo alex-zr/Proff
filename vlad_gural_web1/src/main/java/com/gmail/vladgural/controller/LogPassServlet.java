@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 @WebServlet(urlPatterns = "/logpass")
-public class LogPassServlet  extends HttpServlet {
+public class LogPassServlet extends HttpServlet {
 
     private LogPassList lpList = LogPassList.getInstance();
 
@@ -22,8 +22,8 @@ public class LogPassServlet  extends HttpServlet {
         boolean access = false;
 
 
-        for(LogPass lp:lpList.getList()){
-            if(lp.getLogin().equals(login) && lp.getPassWord().equals(passWord)){
+        for (LogPass lp : lpList.getList()) {
+            if (lp.getLogin().equals(login) && lp.getPassWord().equals(passWord)) {
                 access = true;
                 lp.setAccess(true);
             }
@@ -32,7 +32,7 @@ public class LogPassServlet  extends HttpServlet {
         resp.setContentType("html/text");
         OutputStream os = resp.getOutputStream();
 
-        if(access)
+        if (access)
             strResponse = "Access is allowed";
         else
             strResponse = "Access is denied";

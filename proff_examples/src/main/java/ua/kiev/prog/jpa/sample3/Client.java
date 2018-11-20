@@ -6,8 +6,8 @@ import java.util.Collections;
 import java.util.List;
 
 //@Entity
-@Table(name="Clients")
-@NamedQuery(name="Client.findAll", query = "SELECT c FROM Client c")
+@Table(name = "Clients")
+@NamedQuery(name = "Client.findAll", query = "SELECT c FROM Client c")
 public class Client {
     @Id
     @GeneratedValue
@@ -19,12 +19,13 @@ public class Client {
 
     @ManyToMany
     @JoinTable(
-            name="ClientCourse",
-            joinColumns={@JoinColumn(name="cli_id", referencedColumnName="id")},
-            inverseJoinColumns={@JoinColumn(name="course_id", referencedColumnName="id")})
+            name = "ClientCourse",
+            joinColumns = {@JoinColumn(name = "cli_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "course_id", referencedColumnName = "id")})
     List<Course> courses = new ArrayList<>();
 
-    public Client() {}
+    public Client() {
+    }
 
     public Client(String name, int age) {
         this.name = name;
@@ -32,9 +33,9 @@ public class Client {
     }
 
     public void addCourse(Course course) {
-        if ( ! courses.contains(course))
+        if (!courses.contains(course))
             courses.add(course);
-        if ( ! course.clients.contains(this))
+        if (!course.clients.contains(this))
             course.clients.add(this);
     }
 
