@@ -20,6 +20,8 @@
                             <li><button type="button" id="add_contact" class="btn btn-default navbar-btn">Add Contact</button></li>
                             <li><button type="button" id="add_group" class="btn btn-default navbar-btn">Add Group</button></li>
                             <li><button type="button" id="delete_contact" class="btn btn-default navbar-btn">Delete Contact</button></li>
+                            <%--<li><button type="button" id="view_contact" class="btn btn-default navbar-btn">View Contact</button></li>--%>
+
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Groups <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
@@ -54,7 +56,7 @@
                 <c:forEach items="${contacts}" var="contact">
                     <tr>
                         <td><input type="checkbox" name="toDelete[]" value="${contact.id}" id="checkbox_${contact.id}"/></td>
-                        <td>${contact.name}</td>
+                        <td><a href="/contact/${contact.id}">${contact.name}</a></td>
                         <td>${contact.surname}</td>
                         <td>${contact.phone}</td>
                         <td>${contact.email}</td>
@@ -106,6 +108,10 @@
                     window.location.reload();
                 });
             });
+
+          /*  $('#view_contact').click(function(){
+                window.location.href='/contact_view_page';
+            });*/
         </script>
     </body>
 </html>

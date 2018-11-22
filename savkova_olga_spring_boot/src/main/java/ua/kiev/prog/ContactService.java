@@ -64,4 +64,9 @@ public class ContactService {
     public Group findGroup(long id) {
         return groupRepository.findOne(id);
     }
+
+    @Transactional(readOnly = true)
+    public Contact getContact(long id) {
+        return contactRepository.findOne(id);
+    }
 }
