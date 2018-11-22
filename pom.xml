@@ -29,6 +29,7 @@
         <module>ponomarov_Spring</module>
         <module>proff_examples_spring</module>
         <module>vlad_gural_wab_spring_mvc</module>
+        <module>savkova_olga_spring_boot</module>
     </modules>
 
     <properties>
