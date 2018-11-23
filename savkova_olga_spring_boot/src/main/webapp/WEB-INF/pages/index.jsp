@@ -107,6 +107,7 @@
                     window.location.reload();
                 });
             });
+
             $('#view_contact').click(function(){
                 var data = { 'toView' : []};
                 $(":checked").each(function() {

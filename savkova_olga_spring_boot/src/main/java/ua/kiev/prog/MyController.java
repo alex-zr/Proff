@@ -44,12 +44,6 @@ public class MyController {
         return "contact_add_page";
     }
 
-    @RequestMapping(value="/contact/{id}", method = RequestMethod.GET)
-    public String viewContact(@PathVariable long id, Model model){
-        model.addAttribute("contact", contactService.getContact(id));
-        return "view_contact";
-    }
-
     @RequestMapping("/group_add_page")
     public String groupAddPage() {
         return "group_add_page";
@@ -108,6 +102,12 @@ public class MyController {
     public String groupAdd(@RequestParam String name) {
         contactService.addGroup(new Group(name));
         return "redirect:/";
+    }
+
+    @RequestMapping(value="/contact/{id}", method = RequestMethod.GET)
+    public String viewContact(@PathVariable long id, Model model){
+        model.addAttribute("contact", contactService.getContact(id));
+        return "view_contact";
     }
 
     private long getPageCount() {
