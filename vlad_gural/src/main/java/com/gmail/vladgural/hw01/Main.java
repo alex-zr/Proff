@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class Main {
     static final String DB_CONNECTION = "jdbc:mysql://localhost:3306/rielt";
     static final String DB_USER = "root";
-    static final String DB_PASSWORD = "Cod3281291";
+    static final String DB_PASSWORD = "root";
     private static int countRoom;
 
     static Connection conn;
