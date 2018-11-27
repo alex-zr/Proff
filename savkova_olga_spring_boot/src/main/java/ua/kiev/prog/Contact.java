@@ -1,9 +1,7 @@
 package ua.kiev.prog;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
 
@@ -15,6 +13,9 @@ public class Contact {
     @Id
     @GeneratedValue
     private long id;
+
+    @Column(name="status")
+    private Boolean status;
     
     @ManyToOne
     @JoinColumn(name="group_id")
@@ -34,6 +35,7 @@ public class Contact {
         this.surname = surname;
         this.phone = phone;
         this.email = email;
+        this.status=false;
     }
 /*
     public long getId() {
