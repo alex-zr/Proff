@@ -27,8 +27,8 @@
         <a href="contact/${id}">
             <% if(activ == true){ %>
                 anable
-            <$ }
-            else{ $%>
+            <% }
+            else{ %>
                 disable
             <% } %>
         </a>
