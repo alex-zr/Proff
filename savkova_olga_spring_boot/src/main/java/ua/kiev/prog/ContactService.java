@@ -69,4 +69,8 @@ public class ContactService {
     public Contact getContact(long id) {
         return contactRepository.findOne(id);
     }
+
+    public void save(Contact contact) {
+        contactRepository.save(contact);
+    }
 }

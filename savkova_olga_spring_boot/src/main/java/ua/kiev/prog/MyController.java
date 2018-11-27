@@ -104,13 +104,13 @@ public class MyController {
         return "redirect:/";
     }
 
-    @RequestMapping(value="/contact/{id}", method = RequestMethod.GET)
-    public String viewContact(@PathVariable long id, Model model){
+    @RequestMapping(value = "/contact/{id}", method = RequestMethod.GET)
+    public String viewContact(@PathVariable long id, Model model) {
         model.addAttribute("contact", contactService.getContact(id));
         return "view_contact";
     }
 
-    @RequestMapping("contact/{id}/activate")
+    @RequestMapping("/activate/{id}")
     public String activeContact(@PathVariable long id) {
         Contact contact = contactService.getContact(id);
 
@@ -122,8 +122,9 @@ public class MyController {
                 contact.setStatus(true);
             }
         }
-
-        return "/contact/"+contact.getId();
+        contactService.save(contact);
+        System.out.println(contact);
+        return "redirect:/contact/" + contact.getId();
     }
 
     private long getPageCount() {

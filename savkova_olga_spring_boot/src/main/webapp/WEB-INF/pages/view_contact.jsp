@@ -17,6 +17,12 @@
     <div>
         email:${contact.email}
     </div>
+    <div>
+        status:
+        <a href="/activate/${contact.id}">${contact.status == '1' ? 'disable' : 'enable'}</a>
+    </div>
+
+
 </div>
 
 </body>

@@ -2,12 +2,14 @@ package ua.kiev.prog;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name="Contacts")
 @Data
+@ToString
 @NoArgsConstructor
 public class Contact {
     @Id
@@ -86,4 +88,5 @@ public class Contact {
         this.group = group;
     }
 */
+
 }
