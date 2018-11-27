@@ -110,6 +110,22 @@ public class MyController {
         return "view_contact";
     }
 
+    @RequestMapping("contact/{id}/activate")
+    public String activeContact(@PathVariable long id) {
+        Contact contact = contactService.getContact(id);
+
+
+        if (contact != null) {
+            if (contact.getStatus()) {
+                contact.setStatus(false);
+            } else {
+                contact.setStatus(true);
+            }
+        }
+
+        return "/contact/"+contact.getId();
+    }
+
     private long getPageCount() {
         long totalCount = contactService.count();
         return (totalCount / ITEMS_PER_PAGE) + ((totalCount % ITEMS_PER_PAGE > 0) ? 1 : 0);
