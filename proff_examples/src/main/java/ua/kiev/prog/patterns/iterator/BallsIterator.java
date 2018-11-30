@@ -24,9 +24,4 @@ public class BallsIterator implements Iterator<Ball> {
     public Ball next() {
         return list.get(index++);
     }
-
-    @Override
-    public void remove() {
-        throw new UnsupportedOperationException();
-    }
 }

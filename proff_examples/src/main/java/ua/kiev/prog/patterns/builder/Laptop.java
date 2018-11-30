@@ -1,5 +1,6 @@
 package ua.kiev.prog.patterns.builder;
 
+//@Builder
 public class Laptop {
     private int hddCapasity;
     private int screenSize;

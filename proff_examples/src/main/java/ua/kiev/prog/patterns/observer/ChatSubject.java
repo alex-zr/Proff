@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ChatSubject {
-    private List<ClientObserver> observers = new ArrayList<>();
+    private List<ClientObserver<String>> observers = new ArrayList<>();
     private String state;
 
     public String getState() {
@@ -13,16 +13,16 @@ public class ChatSubject {
 
     public void setState(String state) {
         this.state = state;
-        notifyAllObservers();
+        notifyAllObservers(state);
     }
 
     public void attach(ClientObserver observer){
         observers.add(observer);
     }
 
-    public void notifyAllObservers(){
+    public void notifyAllObservers(String state){
         for (ClientObserver observer : observers) {
-            observer.update();
+            observer.update(state);
         }
     }
 }

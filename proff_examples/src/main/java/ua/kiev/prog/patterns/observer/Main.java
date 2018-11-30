@@ -4,9 +4,9 @@ public class Main {
     public static void main(String[] args) {
         ChatSubject subject = new ChatSubject();
 
-        new RegularClientObserver(subject);
-        new RegularClientObserver(subject);
-        new AdminClientObserver(subject);
+        subject.attach(new RegularClientObserver());
+        subject.attach(new RegularClientObserver());
+        subject.attach(new AdminClientObserver());
 
         System.out.println("First state:");
         subject.setState("State #1");

@@ -30,17 +30,17 @@ public class ContactService {
             contactRepository.delete(id);
     }
 
-    @Transactional(readOnly=true)
+    @Transactional(readOnly = true)
     public List<Group> findGroups() {
         return groupRepository.findAll();
     }
 
-    @Transactional(readOnly=true)
+    @Transactional(readOnly = true)
     public List<Contact> findAll(Pageable pageable) {
         return contactRepository.findAll(pageable).getContent();
     }
 
-    @Transactional(readOnly=true)
+    @Transactional(readOnly = true)
     public List<Contact> findByGroup(Group group, Pageable pageable) {
         return contactRepository.findByGroup(group, pageable);
     }
@@ -50,7 +50,7 @@ public class ContactService {
         return contactRepository.countByGroup(group);
     }
 
-    @Transactional(readOnly=true)
+    @Transactional(readOnly = true)
     public List<Contact> findByPattern(String pattern, Pageable pageable) {
         return contactRepository.findByPattern(pattern, pageable);
     }
@@ -60,7 +60,7 @@ public class ContactService {
         return contactRepository.count();
     }
 
-    @Transactional(readOnly=true)
+    @Transactional(readOnly = true)
     public Group findGroup(long id) {
         return groupRepository.findOne(id);
     }

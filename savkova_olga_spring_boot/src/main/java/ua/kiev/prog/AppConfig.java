@@ -32,7 +32,7 @@ public class AppConfig extends WebMvcConfigurerAdapter {
     private String hbm2dllAuto;
 
     @Bean
-    public PlatformTransactionManager transactionManager(EntityManagerFactory emf){
+    public PlatformTransactionManager transactionManager(EntityManagerFactory emf) {
         return new JpaTransactionManager(emf);
     }
 
